@@ -14,13 +14,18 @@ import retrofit2.create
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Getting the Nasa Asteroid Api using retrofit
+ **/
+
+
 interface AsteroidService {
     @GET("/neo/rest/v1/feed")
     fun getAsteroids(
         @Query("start_date")
         startDate : String,
         @Query("end_date")
-        end_date : String,
+        endDate : String,
         @Query("api_key")
         apiKey : String = Constants.API_KEY
     ) : Deferred<ResponseBody>

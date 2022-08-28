@@ -2,9 +2,7 @@ package com.udacity.asteroidradar.api
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.repository.Asteroid
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.database.DatabaseAsteroid
 import org.json.JSONObject
@@ -64,6 +62,21 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     return formattedDateList
 }
 
+//method to get the date of the day to use in api fetching
+fun getStartDate() : String {
+    val calendar = Calendar.getInstance()
+    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return dateFormat.format(calendar.time)
+}
+
+//method to get the end date to use in api fetching
+fun getEndData() : String {
+    val calendar = Calendar.getInstance()
+    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return dateFormat.format(calendar.add(Calendar.DAY_OF_YEAR, 7))
+}
+
+//method to convert from a api asteroid object to database asteroid object
 fun ArrayList<Asteroid>.asDatabaseModel() : Array<DatabaseAsteroid> {
     return map {
         DatabaseAsteroid(
