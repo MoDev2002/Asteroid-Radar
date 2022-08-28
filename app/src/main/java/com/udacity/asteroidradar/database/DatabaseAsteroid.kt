@@ -1,10 +1,10 @@
 package com.udacity.asteroidradar.database
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.repository.Asteroid
 
+//Database asteroid entity
 @Entity
 data class DatabaseAsteroid(
     @PrimaryKey
@@ -18,6 +18,7 @@ data class DatabaseAsteroid(
     val isPotentiallyHazardous: Boolean
 )
 
+//method for converting from database asteroid to domain asteroid
 fun List<DatabaseAsteroid>.asDomainModel() : List<Asteroid> {
     return map{
         Asteroid(
