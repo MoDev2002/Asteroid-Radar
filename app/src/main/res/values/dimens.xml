@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="asteroid_item_height">75dp</dimen>
+    <dimen name="small_spacing">8dp</dimen>
+    <dimen name="medium_spacing">16dp</dimen>
+    <dimen name="large_spacing">24dp</dimen>
+
+</resources>
