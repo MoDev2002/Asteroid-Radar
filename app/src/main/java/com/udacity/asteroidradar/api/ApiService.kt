@@ -30,7 +30,7 @@ interface AsteroidService {
         apiKey : String = Constants.API_KEY
     ) : Deferred<ResponseBody>
 
-    @GET("/planetary")
+    @GET("/planetary/apod   ")
     fun photoOfTheDay(
         @Query("api_key") apiKey: String = Constants.API_KEY
     ) : Deferred<PictureOfDay>
@@ -46,5 +46,5 @@ object Network {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val asteroidApi = retrofit.create(AsteroidService::class.java)
+    val asteroidApi : AsteroidService = retrofit.create(AsteroidService::class.java)
 }

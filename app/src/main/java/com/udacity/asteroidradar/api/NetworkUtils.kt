@@ -73,7 +73,8 @@ fun getStartDate() : String {
 fun getEndData() : String {
     val calendar = Calendar.getInstance()
     val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
-    return dateFormat.format(calendar.add(Calendar.DAY_OF_YEAR, 7))
+    calendar.add(Calendar.DAY_OF_YEAR, 7)
+    return dateFormat.format(calendar.time)
 }
 
 //method to convert from a api asteroid object to database asteroid object

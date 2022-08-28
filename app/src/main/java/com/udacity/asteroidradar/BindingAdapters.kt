@@ -3,7 +3,23 @@ package com.udacity.asteroidradar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
 
+@BindingAdapter("pictureOfTheDay")
+fun bindPictureOfDay(imageView: ImageView, pictureOfDay: PictureOfDay?){
+    if (pictureOfDay != null){
+        Picasso.get().load(pictureOfDay.url)
+            .placeholder(R.drawable.placeholder_picture_of_day)
+            .error(R.drawable.placeholder_picture_of_day)
+            .fit()
+            .centerCrop()
+            .into(imageView)
+        imageView.contentDescription = pictureOfDay.title
+    }else{
+        imageView.setImageResource(R.drawable.placeholder_picture_of_day)
+        imageView.contentDescription = imageView.context.getString(R.string.empty_picture_of_day)
+    }
+}
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {

@@ -2,6 +2,8 @@ package com.udacity.asteroidradar.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.*
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.database.asDomainModel
@@ -28,6 +30,17 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
             val apiAsteroidList = parseAsteroidsJsonResult(JSONObject(apiAsteroids.string()))
             database.asteroidDao.insertAllAsteroids(*apiAsteroidList.asDatabaseModel())
         }
+    }
+
+    suspend fun getPictureOfTheDay() : PictureOfDay? {
+        var imageOfDay : PictureOfDay
+        withContext(Dispatchers.IO) {
+           imageOfDay = Network.asteroidApi.photoOfTheDay().await()
+        }
+        if(imageOfDay.mediaType == Constants.PICTURE_OF_DAY){
+            return imageOfDay
+        }
+        return null
     }
 
 }
