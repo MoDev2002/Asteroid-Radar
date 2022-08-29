@@ -6,4 +6,6 @@ object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
     const val API_KEY = "wPkrhMxf2rlXDNqjdsaxidDFvpP8ajYVGe5LuNJy"
     const val PICTURE_OF_DAY = "image"
+    const val REFRESH_WORK_NAME = "RefreshDataWorker"
+    const val DELETE_WORK_NAME = "DeleteDataWorker"
 }
