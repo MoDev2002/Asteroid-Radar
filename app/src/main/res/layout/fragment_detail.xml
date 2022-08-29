@@ -15,6 +15,9 @@
         android:layout_height="match_parent"
         android:background="@color/app_background">
 
+        <!--
+            content description is set in BindingAdapters.kt
+            -->
         <ImageView
             android:id="@+id/activity_main_image_of_the_day"
             android:layout_width="match_parent"
@@ -93,6 +96,7 @@
                         android:id="@+id/help_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/help_button_description"
                         android:padding="16dp"
                         app:srcCompat="@drawable/ic_help_circle" />
 

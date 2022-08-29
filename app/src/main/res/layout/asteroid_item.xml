@@ -18,7 +18,8 @@
         android:layout_marginTop="@dimen/small_spacing"
         android:layout_marginBottom="@dimen/small_spacing"
         tools:background="@color/colorPrimaryDark"
-        android:onClick="@{() -> clickListener.onClick(asteroid)}">
+        android:onClick="@{() -> clickListener.onClick(asteroid)}"
+        android:contentDescription="@string/asteroid_item_description">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -51,6 +52,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/codeName"
                 tools:text="2020-02-08" />
 
+            <!--
+            content description is set in BindingAdapters.kt
+            -->
             <ImageView
                 android:id="@+id/imageView"
                 app:statusIcon="@{asteroid.potentiallyHazardous}"
@@ -60,8 +64,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_status_potentially_hazardous"
-                android:contentDescription="@string/asteroid_hazardous_description" />
+                tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 </layout>
