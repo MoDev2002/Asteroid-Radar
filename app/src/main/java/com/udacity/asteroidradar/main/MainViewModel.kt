@@ -42,6 +42,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //Adding Asteroids from the Api to the room database
     init {
         viewModelScope.launch {
+            asteroidRepository.deleteOldAsteroids(getStartDate())
             asteroidRepository.refreshAsteroids(getStartDate(), getEndData())
             _pictureOfDay.value = asteroidRepository.getPictureOfTheDay()
         }

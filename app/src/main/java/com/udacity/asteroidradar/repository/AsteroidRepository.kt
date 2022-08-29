@@ -32,6 +32,12 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
         }
     }
 
+    suspend fun deleteOldAsteroids(todayDate : String){
+        withContext(Dispatchers.IO) {
+            database.asteroidDao.deleteOldAsteroids(todayDate)
+        }
+    }
+
     suspend fun getPictureOfTheDay() : PictureOfDay? {
         var imageOfDay : PictureOfDay
         withContext(Dispatchers.IO) {
