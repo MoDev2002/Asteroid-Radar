@@ -3,7 +3,7 @@ package com.udacity.asteroidradar.workmanager
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.udacity.asteroidradar.api.getEndData
+import com.udacity.asteroidradar.api.getEndDate
 import com.udacity.asteroidradar.api.getStartDate
 import com.udacity.asteroidradar.database.getDatabase
 import com.udacity.asteroidradar.repository.AsteroidRepository
@@ -16,7 +16,7 @@ class RefreshDataManager(appContext: Context, params: WorkerParameters) : Corout
         val repository = AsteroidRepository(database)
 
         return try {
-            repository.refreshAsteroids(getStartDate(), getEndData())
+            repository.refreshAsteroids(getStartDate(), getEndDate())
             repository.getPictureOfTheDay()
             Result.success()
         }catch (e : HttpException) {

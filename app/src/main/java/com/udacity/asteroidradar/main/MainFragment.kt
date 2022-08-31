@@ -12,16 +12,23 @@ import com.udacity.asteroidradar.detail.DetailFragment
 import com.udacity.asteroidradar.repository.Asteroid
 
 class MainFragment : Fragment() {
+    private val binding by lazy {
+        FragmentMainBinding.inflate(layoutInflater)
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val binding = FragmentMainBinding.inflate(inflater)
+    private lateinit var viewModel : MainViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         //setting the view model and initializing it
         val application = requireNotNull(this.activity).application
         val viewModelFactory = MainViewModelFactory(application)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+    }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -51,6 +58,12 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+         when(item.itemId) {
+            R.id.show_week_asteroids -> viewModel.getWeekAsteroids()
+            R.id.show_today_asteroids -> viewModel.getTodayAsteroids()
+            R.id.show_all_asteroids -> viewModel.getSavedAsteroids()
+            else -> super.onOptionsItemSelected(item)
+        }
         return true
     }
 }

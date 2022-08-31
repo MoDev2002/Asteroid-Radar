@@ -70,7 +70,7 @@ fun getStartDate() : String {
 }
 
 //method to get the end date to use in api fetching
-fun getEndData() : String {
+fun getEndDate() : String {
     val calendar = Calendar.getInstance()
     val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
     calendar.add(Calendar.DAY_OF_YEAR, 7)

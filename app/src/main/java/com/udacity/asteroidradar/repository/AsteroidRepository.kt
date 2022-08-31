@@ -19,9 +19,6 @@ import org.json.JSONObject
 class AsteroidRepository(private val database: AsteroidDatabase) {
 
     //Getting the list of asteroids from the database so we can use it the view model
-    val asteroids : LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao.getAsteroids()) {
-        it.asDomainModel()
-    }
 
     //Getting data from the Api and inserting it to the room database
     suspend fun refreshAsteroids(startDate : String, endDate : String) {
@@ -37,6 +34,7 @@ class AsteroidRepository(private val database: AsteroidDatabase) {
             database.asteroidDao.deleteOldAsteroids(todayDate)
         }
     }
+
 
     suspend fun getPictureOfTheDay() : PictureOfDay? {
         var imageOfDay : PictureOfDay
